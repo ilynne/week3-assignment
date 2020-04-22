@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+body {
+  background-color: #f9f9f9;
+  padding: 1em;
+}
+.card {
+  margin: 6em;
+  background-color: white;
+  /* border: 6px solid rgba(200, 200, 200, 0.75); */
+  border-radius: 5px;
+  box-shadow: 0 0 10px white, 0 0 5px white;
+}
+
+.polaroid {
+  height: 340px;
+  width: 340px;
+  /* padding: 6px;
+  box-shadow: 0 0 10px lightgray; */
+}
+.polaroid >img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 18px;
+  border-bottom: 72px;
+  border-color: white;
+  border-style: solid;
+  box-shadow: 0 0 10px lightgray;
+}
+.caption {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.5em;
+}
