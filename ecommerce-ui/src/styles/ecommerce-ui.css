@@ -4,31 +4,22 @@ body {
   background-color: #f9f9f9;
   padding: 1em;
 }
-.card {
-  margin: 6em;
-  background-color: white;
-  /* border: 6px solid rgba(200, 200, 200, 0.75); */
-  border-radius: 5px;
-  box-shadow: 0 0 10px white, 0 0 5px white;
-}
-
 .polaroid {
-  height: 340px;
-  width: 340px;
-  /* padding: 6px;
-  box-shadow: 0 0 10px lightgray; */
+  height: 356px;
+  width: 320px;
+  padding-bottom: 72px;
+  padding: 18px 18px 72px 18px;
+  box-shadow: 0 0 10px lightgray;
+  text-align: center;
 }
 .polaroid >img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border: 18px;
-  border-bottom: 72px;
-  border-color: white;
-  border-style: solid;
-  box-shadow: 0 0 10px lightgray;
+  border: 1px solid #f1f1f1;
 }
 .caption {
   font-family: 'Permanent Marker', cursive;
   font-size: 1.5em;
+  margin: 0.5em 0;
 }
