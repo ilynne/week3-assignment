@@ -46,3 +46,11 @@ body {
 .details-container {
   grid-area: details-container;
 }
+
+.cart-container {
+  width: 240px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid orange;
+}

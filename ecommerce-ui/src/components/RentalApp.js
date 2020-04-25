@@ -2,15 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import properties from '../_data/airbnbs.json';
 import PropertyList from './propertyList';
+import Cart from './cart';
 
 class RentalApp extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cartItems: [{
-        id: 1,
-        qty: 2,
-      }],
+      cartItems: [],
     }
   }
 
@@ -52,6 +50,10 @@ class RentalApp extends React.Component {
           addPropertyToCart={this.addPropertyToCart}
         >
         </PropertyList>
+        <Cart
+          cartItems={this.state.cartItems}
+        >
+        </Cart>
       </div>
     )
   }
