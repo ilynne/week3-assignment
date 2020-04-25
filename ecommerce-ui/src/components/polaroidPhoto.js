@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PolaroidPhoto = (props) => {
-  const { alt, src, caption } = props
+  const { image, location } = props
+  const caption = `${location.city} ${location.country}`
 
   return (
     <div className={'polaroid-container'}>
       <img
-        src={src}
-        alt={alt}
+        src={image}
+        alt={'alt here'}
       />
       <p className={'caption'}>{caption}</p>
     </div>
@@ -16,9 +17,11 @@ const PolaroidPhoto = (props) => {
 }
 
 PolaroidPhoto.propTypes = {
-  alt: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
-  caption: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    city: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default PolaroidPhoto;

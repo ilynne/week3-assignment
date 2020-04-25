@@ -5,7 +5,17 @@ body {
   padding: 1em;
 }
 
+.property-listing-container {
+  display: grid;
+  grid-template-columns: 356px 1em 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "photo-container . details-container";
+  margin-bottom: 1em;
+}
+
 .polaroid-container {
+  grid-area: photo-container;
   display: grid;
   grid-template-columns: 18px 320px 18px;
   grid-template-rows: 18px 320px 18px 54px 18px;
@@ -31,4 +41,8 @@ body {
     text-align: center;
     grid-area: caption
   }
+}
+
+.details-container {
+  grid-area: details-container;
 }
