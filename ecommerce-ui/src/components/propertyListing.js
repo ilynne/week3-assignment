@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PolaroidPhoto from './polaroidPhoto';
 import Payment from './payment';
 import Host from './host';
+import AddToCart from './addToCart';
 
 const PropertyListing = (props) => {
   const { id, property, addPropertyToCart } = props;
@@ -21,7 +22,11 @@ const PropertyListing = (props) => {
         <Payment payment={payment}></Payment>
         <Host host={host}></Host>
         <p>{JSON.stringify(rating)}</p>
-        <button onClick={addPropertyToCart}>Add to cart</button>
+        <AddToCart
+          id={id}
+          addPropertyToCart={addPropertyToCart}
+        >
+        </AddToCart>
       </div>
     </div>
   )

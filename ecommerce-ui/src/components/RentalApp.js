@@ -7,12 +7,41 @@ class RentalApp extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cartItems: [],
+      cartItems: [{
+        id: 1,
+        qty: 2,
+      }],
     }
   }
 
-  addPropertyToCart = (id) => {
-    console.log('add', id);
+  addPropertyToCart = (id, qty) => {
+    const existingCartItem = this.state.cartItems.find((cartItem) => { return cartItem.id === id })
+    if (existingCartItem) {
+      this.updateCartItemQuantity(id, qty);
+    } else {
+      this.addCartItem(id, qty);
+    }
+  }
+
+  updateCartItemQuantity = (id, qty) => {
+    const newCartItems = this.state.cartItems.map((cartItem) => {
+      if (cartItem.id === id) {
+        return {
+          ...cartItem,
+          qty: cartItem.qty + qty,
+        }
+      } else {
+        return {
+          ...cartItem
+        }
+      }
+    });
+    this.setState({ cartItems: [...newCartItems] });
+  }
+
+  addCartItem = (id, qty) => {
+    const cartItem = { id: id, qty: qty }
+    this.setState({ cartItems: [...this.state.cartItems, cartItem] } );
   }
 
   render() {
@@ -21,7 +50,8 @@ class RentalApp extends React.Component {
         <PropertyList
           properties={properties}
           addPropertyToCart={this.addPropertyToCart}
-        ></PropertyList>
+        >
+        </PropertyList>
       </div>
     )
   }
