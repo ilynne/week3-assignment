@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PolaroidPhoto from './polaroidPhoto';
+import Payment from './payment';
+import Host from './host';
 
 const PropertyListing = (props) => {
-  const { property } = props;
+  const { id, property, addPropertyToCart } = props;
   const { title, houseType, image, location, payment, host, rating } = property;
 
   return (
@@ -16,15 +18,18 @@ const PropertyListing = (props) => {
       <div className='details-container'>
         <h2>{title}</h2>
         <p>{houseType}</p>
-        <p>{JSON.stringify(payment)}</p>
-        <p>{JSON.stringify(host)}</p>
+        <Payment payment={payment}></Payment>
+        <Host host={host}></Host>
         <p>{JSON.stringify(rating)}</p>
+        <button onClick={addPropertyToCart}>Add to cart</button>
       </div>
     </div>
   )
 }
 
 PropertyListing.propTypes = {
+  id: PropTypes.number.isRequired,
+  addPropertyToCart: PropTypes.func.isRequired,
   property: PropTypes.shape({
     title: PropTypes.string.isRequired,
     houseType: PropTypes.string.isRequired,

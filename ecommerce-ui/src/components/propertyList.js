@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import PropertyListing from './propertyListing';
 
 const PropertyList = (props) => {
-  const { properties } = props;
+  const { addPropertyToCart, properties } = props;
 
   return (
     <div>
       {properties.map((property, i) =>
         <PropertyListing
           property={property}
-          key={i}>
+          key={i}
+          id={i}
+          addPropertyToCart={addPropertyToCart}>
         </PropertyListing>
       )}
     </div>
@@ -18,6 +20,7 @@ const PropertyList = (props) => {
 }
 
 PropertyList.propTypes = {
+  addPropertyToCart: PropTypes.func.isRequired,
   properties: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
