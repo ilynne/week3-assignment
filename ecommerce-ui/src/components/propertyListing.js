@@ -4,6 +4,7 @@ import PolaroidPhoto from './polaroidPhoto';
 import Payment from './payment';
 import Host from './host';
 import AddToCart from './addToCart';
+import Rating from './rating';
 
 const PropertyListing = (props) => {
   const { id, property, addPropertyToCart } = props;
@@ -18,10 +19,14 @@ const PropertyListing = (props) => {
       </PolaroidPhoto>
       <div className='details-container'>
         <h2>{title}</h2>
-        <p>{houseType}</p>
+        <h3>{houseType}</h3>
         <Payment payment={payment}></Payment>
         <Host host={host}></Host>
-        <p>{JSON.stringify(rating)}</p>
+        <Rating
+          rating={rating}
+          id={id}
+        >
+        </Rating>
         <AddToCart
           id={id}
           addPropertyToCart={addPropertyToCart}
