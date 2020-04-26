@@ -12,7 +12,12 @@ const CartItemsList = (props) => {
   return (
     <div className={'cart-items-list'}>
       {props.cartItems.map((cartItem) =>
-        <CartItem cartItem={cartItem} key={cartItem.id}></CartItem>
+        <CartItem
+          cartItem={cartItem}
+          key={cartItem.id}
+          deleteCartItem={props.deleteCartItem}
+        >
+      </CartItem>
       )}
       { total > 0
         ? <p className={'cart-total'}><b>{`Total: $${total}`}</b></p>
@@ -28,7 +33,8 @@ CartItemsList.propTypes = {
       id: PropTypes.number.isRequired,
       qty: PropTypes.number.isRequired,
     })
-  ).isRequired
+  ).isRequired,
+  deleteCartItem: PropTypes.func.isRequired,
 }
 
 export default CartItemsList;

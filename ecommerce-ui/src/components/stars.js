@@ -31,7 +31,10 @@ const Stars = (props) => {
         );
       } else {
         iconArray.push(
-          <span className={'empty-star'}>
+          <span
+            className={'empty-star'}
+            key={`empty-star-${id}-${i}`}
+          >
             <FontAwesomeIcon
               icon={farStar}
               key={`star-${id}-${i}`}

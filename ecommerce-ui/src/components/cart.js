@@ -11,7 +11,8 @@ class Cart extends React.Component {
         id: PropTypes.number.isRequired,
         qty: PropTypes.number.isRequired,
       })
-    ).isRequired
+    ).isRequired,
+    deleteCartItem: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -71,7 +72,11 @@ class Cart extends React.Component {
           }
         </div>
         { this.props.cartItems.length > 0
-          ? <CartItemsList cartItems={this.props.cartItems}></CartItemsList>
+          ? <CartItemsList
+              cartItems={this.props.cartItems}
+              deleteCartItem={this.props.deleteCartItem}
+            >
+            </CartItemsList>
           : <p className={'cart-items-list'}>Your cart is empty.</p>
         }
 

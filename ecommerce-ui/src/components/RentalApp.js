@@ -49,6 +49,11 @@ class RentalApp extends React.Component {
     this.setState({ cartItems: [...this.state.cartItems, cartItem] } );
   }
 
+  deleteCartItem = (id) => {
+    const newCartItems = this.state.cartItems.filter(cartItem => cartItem.id !== id);
+    this.setState({ cartItems: [...newCartItems] });
+  }
+
   render() {
     return (
       <div className={'main-content'}>
@@ -59,6 +64,7 @@ class RentalApp extends React.Component {
         </PropertyList>
         <Cart
           cartItems={this.state.cartItems}
+          deleteCartItem={this.deleteCartItem}
         >
         </Cart>
       </div>

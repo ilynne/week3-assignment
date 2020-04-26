@@ -2,16 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CartItem = (props) => {
-  const { cartItem } = props;
+  const { cartItem, deleteCartItem } = props;
   const { id, qty, title, cost } = cartItem;
   const nights = (qty > 1 ? 'nights' : 'night ');
   const total = qty * cost;
+
+  const handleDeleteClick = (e) => {
+    e.preventDefault();
+    console.log('delete', id);
+    deleteCartItem(id);
+  }
 
   return (
     <div className={'cart-item'}>
       <p><b>{title}</b></p>
       <p>{`${qty} ${nights} at $${cost} per night.`}</p>
-      <p className={'cart-total'}>{`$${total}`}</p>
+      <p className={'cart-total'}>
+        <a
+          href={''}
+          className={'cart-item-delete'}
+          onClick={handleDeleteClick}
+        >
+          delete
+        </a>
+        {`$${total}`}
+      </p>
     </div>
   )
 }
@@ -22,7 +37,8 @@ CartItem.propTypes = {
     qty: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     cost: PropTypes.number.isRequired,
-  }).isRequired
+  }).isRequired,
+  deleteCartItem: PropTypes.func.isRequired,
 }
 
 export default CartItem;
