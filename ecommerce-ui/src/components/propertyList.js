@@ -6,7 +6,7 @@ const PropertyList = (props) => {
   const { addPropertyToCart, properties } = props;
 
   return (
-    <div>
+    <div className={'property-list-container'}>
       {properties.map((property, i) =>
         <PropertyListing
           property={property}

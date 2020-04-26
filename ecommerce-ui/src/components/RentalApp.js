@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import properties from '../_data/airbnbs.json';
 import PropertyList from './propertyList';
 import Cart from './cart';
+import AddProperty from './addProperty';
 
 class RentalApp extends React.Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class RentalApp extends React.Component {
   render() {
     return (
       <div className={'main-content'}>
+        <AddProperty></AddProperty>
         <PropertyList
           properties={properties}
           addPropertyToCart={this.addPropertyToCart}

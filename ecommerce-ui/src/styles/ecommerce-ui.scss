@@ -2,9 +2,55 @@
 
 body {
   background-color: #f9f9f9;
-  padding: 1em;
 }
-
+.add-property-container {
+  margin: 0.5em 1em;
+  >a {
+    text-decoration: none;
+  }
+}
+.add-property-form-container {
+  position: absolute;
+  margin-top: 0.5em;
+  padding: 1em;
+  background-color: white;
+  z-index: 1;
+  >.cancel {
+    position: absolute;
+    right: 1em;
+  }
+}
+.add-property-form {
+  >label, input, select, button {
+    font-size: 1.25em;
+    display: block;
+  }
+  >label.checkbox, input[type=checkbox] {
+    display: inline-block;
+  }
+  >label {
+    font-weight: bold;
+    margin-top: 0.5em;
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+  >input[type=text] {
+    width: 20em;
+  }
+  >input[type=checkbox] {
+    vertical-align: 3px;
+  }
+  >input[type=number] {
+    width: 5em;
+  }
+  >button {
+    margin-top: 0.5em;
+  }
+}
+.property-list-container {
+  margin: 0.5em 1em;
+}
 .property-listing-container {
   display: grid;
   grid-template-columns: 356px 1em 1fr;
@@ -113,4 +159,19 @@ body {
 .superhost {
   color: royalblue;
   padding-right: 2px;
+}
+
+@media screen and (max-width: 767px) {
+  .property-listing-container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "photo-container"
+      "details-container";
+    margin-bottom: 1em;
+  }
+}
+.close-box, .cart-icon, .cart-items-count {
+  cursor: pointer;
 }
