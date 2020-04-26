@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-
+import CartItemsList from './cartItemsList';
 
 class Cart extends React.Component {
   static propTypes = {
@@ -56,7 +56,7 @@ class Cart extends React.Component {
             : null
           }
         </div>
-        <p>{JSON.stringify(this.props.cartItems)}</p>
+        <CartItemsList cartItems={this.props.cartItems}></CartItemsList>
       </div>
     )
   }

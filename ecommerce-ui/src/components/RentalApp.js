@@ -38,7 +38,14 @@ class RentalApp extends React.Component {
   }
 
   addCartItem = (id, qty) => {
-    const cartItem = { id: id, qty: qty }
+    const propertyInfo = properties[id]
+    const { title, payment } = propertyInfo
+    const cartItem = {
+      id: id,
+      qty: qty,
+      title: title,
+      cost: payment.cost,
+     }
     this.setState({ cartItems: [...this.state.cartItems, cartItem] } );
   }
 
