@@ -52,7 +52,7 @@ class Cart extends React.Component {
           >
           </FontAwesomeIcon>
           { this.props.cartItems.length > 0
-            ? <div class={'cart-items-count'}>{this.props.cartItems.length}</div>
+            ? <div className={'cart-items-count'}>{this.props.cartItems.length}</div>
             : null
           }
         </div>

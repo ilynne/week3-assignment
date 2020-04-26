@@ -1,13 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CartItem from './cartItem';
 
 const CartItemsList = (props) => {
+
+  const total = (
+    props.cartItems.map((cartItem) => {
+      return cartItem.qty * cartItem.cost } ).reduce((acc, val) => { return acc + val }, 0)
+  )
 
   return (
     <div className={'cart-items-list'}>
       {props.cartItems.map((cartItem) =>
-        <p>{JSON.stringify(cartItem)}</p>
+        <CartItem cartItem={cartItem} key={cartItem.id}></CartItem>
       )}
+      { total > 0
+        ? <p className={'cart-total'}><b>{`Total: $${total}`}</b></p>
+        : null
+      }
     </div>
   )
 }
