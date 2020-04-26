@@ -70,7 +70,11 @@ class Cart extends React.Component {
             : null
           }
         </div>
-        <CartItemsList cartItems={this.props.cartItems}></CartItemsList>
+        { this.props.cartItems.length > 0
+          ? <CartItemsList cartItems={this.props.cartItems}></CartItemsList>
+          : <p className={'cart-items-list'}>Your cart is empty.</p>
+        }
+
       </div>
     )
   }
