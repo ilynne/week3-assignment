@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
 
 class Cart extends React.Component {
   static propTypes = {
@@ -11,15 +14,24 @@ class Cart extends React.Component {
     ).isRequired
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      qty: 1,
-    }
-    // this.handleAddPropertyToCart = this.handleAddPropertyToCart.bind(this);
-    // this.handleChangeQuantity = this.handleChangeQuantity.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     cartTotalItems: this.cartTotalItems(),
+  //   }
+  //   // this.handleAddPropertyToCart = this.handleAddPropertyToCart.bind(this);
+  //   // this.handleChangeQuantity = this.handleChangeQuantity.bind(this);
+  // }
 
+  // cartTotalItems() {
+  //   const total = 0;
+  //   // return this.props.cartItems.map((cartItem) => { return cartItem.qty } )
+  //   console.log(this.props.cartItems);
+  //   // const cartTotals = this.props.cartItems.map((cartItem) => { return cartItem.qty } )
+  //   // console.log(cartTotals);
+  //   // return cartTotals.reduce((0, itemTotal), 0);
+  //   return this.props.cartItems.map((cartItem) => { return cartItem.qty } ).reduce((acc, val) => { return acc + val }, 0);
+  // }
   // handleAddPropertyToCart(e) {
   //   e.preventDefault();
   //   this.props.addPropertyToCart(this.props.id, this.state.qty);
@@ -33,7 +45,18 @@ class Cart extends React.Component {
   render() {
     return (
       <div className={'cart-container'}>
-        {JSON.stringify(this.props.cartItems)}
+        <div className={'cart-indicator'}>
+          <FontAwesomeIcon
+            icon={faShoppingCart}
+            className={'cart-icon'}
+          >
+          </FontAwesomeIcon>
+          { this.props.cartItems.length > 0
+            ? <div class={'cart-items-count'}>{this.props.cartItems.length}</div>
+            : null
+          }
+        </div>
+        <p>{JSON.stringify(this.props.cartItems)}</p>
       </div>
     )
   }

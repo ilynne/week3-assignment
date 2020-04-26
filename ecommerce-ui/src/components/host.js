@@ -6,7 +6,7 @@ const Host = (props) => {
 
   return (
     <div className={'host-container'}>
-      <p><b>Host:</b> {name}</p>
+      <p><b>Host:</b> {JSON.stringify(props.host)}</p>
     </div>
   )
 }
