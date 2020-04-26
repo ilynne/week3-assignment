@@ -1,12 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faAward } from '@fortawesome/free-solid-svg-icons';
 
 const Host = (props) => {
   const { name, isSuperhost } = props.host
 
   return (
     <div className={'host-container'}>
-      <p><b>Host:</b> {JSON.stringify(props.host)}</p>
+      <p><b>Host: </b>
+      { isSuperhost
+        ? <FontAwesomeIcon
+            icon={faAward}
+            className={'superhost'}
+          >
+          </FontAwesomeIcon>
+        : null
+      }
+      {name}
+      </p>
     </div>
   )
 }

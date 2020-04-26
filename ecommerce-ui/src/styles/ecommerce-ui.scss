@@ -90,8 +90,22 @@ body {
     display: none;
   }
 }
-.star-half {
+.stars-container {
+  color: gray;
+}
+.star-stacked {
   width: 1.25em;
   height: 1em;
   vertical-align: -0.125em;
+}
+.empty-star {
+  width: 1.25em;
+  display: inline-block;
+}
+.filled-star {
+  color: orange;
+}
+.superhost {
+  color: royalblue;
+  padding-right: 2px;
 }

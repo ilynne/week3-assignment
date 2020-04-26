@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import StarHalf from './starHalf';
+import StarFilled from './starFilled';
 
 const Stars = (props) => {
   const { id, stars } = props
@@ -12,19 +13,32 @@ const Stars = (props) => {
     let iconArray = [];
     for (let i = 1; i <= 5; i++) {
       if (i <= stars) {
-        iconArray.push(<FontAwesomeIcon
-          icon={faStar}
-          key={`star-${id}-${i}`}
-        >
-        </FontAwesomeIcon>);
+        iconArray.push(
+          <StarFilled
+            index={i}
+            id={i}
+            key={`star-${id}-${i}`}>
+          </StarFilled>
+        );
       } else if (i === Math.ceil(stars)) {
-        iconArray.push(<StarHalf index={i} id={id} key={`star-${id}-${i}`}></StarHalf>)
+        iconArray.push(
+          <StarHalf
+            index={i}
+            id={id}
+            key={`star-${id}-${i}`}
+          >
+        </StarHalf>
+        );
       } else {
-        iconArray.push(<FontAwesomeIcon
-          icon={farStar}
-          key={`star-${id}-${i}`}
-        >
-        </FontAwesomeIcon>);
+        iconArray.push(
+          <span className={'empty-star'}>
+            <FontAwesomeIcon
+              icon={farStar}
+              key={`star-${id}-${i}`}
+            >
+            </FontAwesomeIcon>
+          </span>
+        );
       }
     }
     return iconArray;
