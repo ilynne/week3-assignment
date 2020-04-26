@@ -14,14 +14,15 @@ class Cart extends React.Component {
     ).isRequired
   }
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     cartTotalItems: this.cartTotalItems(),
-  //   }
-  //   // this.handleAddPropertyToCart = this.handleAddPropertyToCart.bind(this);
-  //   // this.handleChangeQuantity = this.handleChangeQuantity.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayCart: false,
+    }
+    this.handleCartDisplay = this.handleCartDisplay.bind(this);
+    // this.handleAddPropertyToCart = this.handleAddPropertyToCart.bind(this);
+    // this.handleChangeQuantity = this.handleChangeQuantity.bind(this);
+  }
 
   // cartTotalItems() {
   //   const total = 0;
@@ -42,17 +43,30 @@ class Cart extends React.Component {
   //   this.setState({ qty: Number(e.target.value) })
   // }
 
+  handleCartDisplay(e) {
+    const displayCart = !this.state.displayCart
+    this.setState({
+      displayCart: displayCart,
+    })
+  }
+
   render() {
     return (
-      <div className={'cart-container'}>
+      <div className={`cart-container ${this.state.displayCart ? null : 'cart-hidden'}`}>
         <div className={'cart-indicator'}>
           <FontAwesomeIcon
             icon={faShoppingCart}
             className={'cart-icon'}
+            onClick={this.handleCartDisplay}
           >
           </FontAwesomeIcon>
           { this.props.cartItems.length > 0
-            ? <div className={'cart-items-count'}>{this.props.cartItems.length}</div>
+            ? <div
+                className={'cart-items-count'}
+                onClick={this.handleCartDisplay}
+              >
+                {this.props.cartItems.length}
+              </div>
             : null
           }
         </div>

@@ -84,3 +84,9 @@ body {
 .cart-total {
   text-align: right;
 }
+.cart-hidden {
+  background-color: transparent;
+  >.cart-items-list {
+    display: none;
+  }
+}
