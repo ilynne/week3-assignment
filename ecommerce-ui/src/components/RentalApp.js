@@ -10,7 +10,7 @@ class RentalApp extends React.Component {
     super(props)
     this.state = {
       cartItems: [],
-      newProperties: [],
+      properties: [],
     }
   }
 
@@ -56,8 +56,9 @@ class RentalApp extends React.Component {
     this.setState({ cartItems: [...newCartItems] });
   }
 
-  addPropertyListing = (property) => {
-    console.log(property);
+  addPropertyListing = (newProperty) => {
+    const newProperties = this.state.properties.map((property) => { return property });
+    this.setState({ properties: [...newProperties, newProperty]});
   }
 
   render() {
