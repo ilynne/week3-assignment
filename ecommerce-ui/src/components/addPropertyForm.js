@@ -7,14 +7,34 @@ class AddPropertyForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      property: [],
+      title: '',
+      houseType: 'Apartment',
+      city: '',
+      country: 'USA',
+      cost: 0,
+      description: '',
+      name: '',
     }
     this.handleClickClose = this.handleClickClose.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   }
 
   handleClickClose(e) {
     e.preventDefault();
     this.props.hideForm();
+  }
+
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  handleCheckboxChange(e) {
+    this.setState({
+      [e.target.name]: e.target.checked ? e.target.value : '',
+    })
   }
 
   render() {
@@ -36,14 +56,20 @@ class AddPropertyForm extends React.Component {
           <input
             type={'text'}
             id={'title'}
+            name={'title'}
             required={true}
+            onChange={this.handleInputChange}
           >
           </input>
 
           <label htmlFor={'house-type'}>Property Type:</label>
-          <select id={'house-type'}>
+          <select
+            id={'house-type'}
+            name={'houseType'}
+            onChange={this.handleInputChange}
+          >
             { houseTypes.map((houseType) => {
-                return <option value={houseType}>{houseType}</option>
+                return <option value={houseType} key={houseType}>{houseType}</option>
               })
             }
           </select>
@@ -52,14 +78,20 @@ class AddPropertyForm extends React.Component {
           <input
             type={'text'}
             id={'city'}
+            name={'city'}
             required={true}
+            onChange={this.handleInputChange}
           >
           </input>
 
           <label htmlFor={'country'}>Country:</label>
-          <select id={'country'}>
+          <select
+            id={'country'}
+            name={'country'}
+            onChange={this.handleInputChange}
+          >
             { countries.map((country) => {
-                return <option value={country}>{country}</option>
+                return <option value={country} key={country}>{country}</option>
               })
             }
           </select>
@@ -69,28 +101,35 @@ class AddPropertyForm extends React.Component {
             type={'number'}
             min={1}
             id={'cost'}
+            name={'cost'}
             size={5}
             required={true}
+            onChange={this.handleInputChange}
           >
           </input>
 
           <input
             type={'checkbox'}
-            id={'free-cancellation'}
+            id={'description'}
+            name={'description'}
+            value={'Free Cancellation'}
+            onChange={this.handleCheckboxChange}
           >
           </input>
           <label
-            htmlFor={'free-cancellation'}
+            htmlFor={'description'}
             className={'checkbox'}
           >
             Free Cancellation
           </label>
 
-          <label htmlFor={'host'}>Host:</label>
+          <label htmlFor={'name'}>Host:</label>
           <input
             type={'text'}
-            id={'host'}
+            id={'name'}
+            name={'name'}
             required={true}
+            onChange={this.handleInputChange}
           >
           </input>
 

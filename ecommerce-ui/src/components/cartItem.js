@@ -18,13 +18,12 @@ const CartItem = (props) => {
       <p><b>{title}</b></p>
       <p>{`${qty} ${nights} at $${cost} per night.`}</p>
       <p className={'cart-total'}>
-        <a
-          href={''}
-          className={'cart-item-delete'}
+        <span
+          className={'cart-item-delete fake-link'}
           onClick={handleDeleteClick}
         >
           delete
-        </a>
+        </span>
         {`$${total}`}
       </p>
     </div>

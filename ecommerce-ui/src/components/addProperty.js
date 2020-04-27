@@ -28,12 +28,12 @@ class AddProperty extends React.Component {
   render() {
     return (
       <div className={'add-property-container'}>
-        <a
-          href={''}
+        <span
+          className={'fake-link'}
           onClick={this.displayForm}
         >
           List a property
-        </a>
+        </span>
         { this.state.displayForm
           ? <AddPropertyForm
               hideForm={this.hideForm}
