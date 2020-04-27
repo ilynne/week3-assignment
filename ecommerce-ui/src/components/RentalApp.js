@@ -10,6 +10,7 @@ class RentalApp extends React.Component {
     super(props)
     this.state = {
       cartItems: [],
+      newProperties: [],
     }
   }
 
@@ -55,10 +56,17 @@ class RentalApp extends React.Component {
     this.setState({ cartItems: [...newCartItems] });
   }
 
+  addPropertyListing = (property) => {
+    console.log(property);
+  }
+
   render() {
     return (
       <div className={'main-content'}>
-        <AddProperty></AddProperty>
+        <AddProperty
+          addPropertyListing={this.addPropertyListing}
+        >
+        </AddProperty>
         <PropertyList
           properties={properties}
           addPropertyToCart={this.addPropertyToCart}

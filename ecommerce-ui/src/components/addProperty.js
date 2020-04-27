@@ -7,7 +7,7 @@ class AddProperty extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayForm: false,
+      displayForm: true,
       property: [],
     }
   }
@@ -37,6 +37,7 @@ class AddProperty extends React.Component {
         { this.state.displayForm
           ? <AddPropertyForm
               hideForm={this.hideForm}
+              addPropertyListing={this.props.addPropertyListing}
             >
             </AddPropertyForm>
           : null

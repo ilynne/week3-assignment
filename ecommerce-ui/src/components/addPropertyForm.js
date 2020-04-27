@@ -6,18 +6,43 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 class AddPropertyForm extends React.Component {
   constructor(props) {
     super(props)
+    this.houseTypes = ['Apartment', 'Entire House', 'Sleeping Bag', 'Yurt'];
+    this.countries = ['USA', 'Canada', 'Sweden'];
+    this.images = [
+      'jan-jakub-nanista-UHyrjKPsshk-unsplash.jpg',
+      'bantersnaps-sejLyCD2UQE-unsplash.jpg',
+      'felix-m-dorn-hcti0k5E2Iw-unsplash.jpg',
+      'annie-spratt-0mElfGrF8EM-unsplash.jpg'
+    ]
     this.state = {
-      title: '',
-      houseType: 'Apartment',
-      city: '',
-      country: 'USA',
-      cost: 0,
-      description: '',
-      name: '',
+      title: 'Hovel',
+      houseType: this.houseTypes[0],
+      image: this.images[0],
+      location: {
+        city: 'Seattle',
+        country: this.countries[0],
+      },
+      payment: {
+        cost: 100,
+        description: '',
+      },
+      host: {
+        name: 'Lynne',
+        isSuperhost: false,
+      },
+      rating: {
+        stars: 0,
+        reviews: 0,
+      }
     }
     this.handleClickClose = this.handleClickClose.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleHouseTypeChange = this.handleHouseTypeChange.bind(this);
+    this.handleCityCountryChange = this.handleCityCountryChange.bind(this);
+    this.handleCostChange = this.handleCostChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
   }
 
   handleClickClose(e) {
@@ -33,14 +58,53 @@ class AddPropertyForm extends React.Component {
 
   handleCheckboxChange(e) {
     this.setState({
-      [e.target.name]: e.target.checked ? e.target.value : '',
+      payment: {
+        ...this.state.payment,
+        [e.target.name]: e.target.checked ? 'Free Cancellation' : '',
+      }
+    })
+  }
+
+  handleFormSubmit(e) {
+    e.preventDefault();
+    this.props.addPropertyListing(this.state);
+  }
+
+  handleHouseTypeChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+      image: this.images[e.target.selectedIndex],
+    })
+  }
+
+  handleCityCountryChange(e) {
+    this.setState({
+      location: {
+        ...this.state.location,
+        [e.target.name]: e.target.value,
+      }
+    })
+  }
+
+  handleCostChange(e) {
+    this.setState({
+      payment: {
+        ...this.state.payment,
+        [e.target.name]: e.target.value,
+      }
+    })
+  }
+
+  handleNameChange(e) {
+    this.setState({
+      host: {
+        ...this.state.host,
+        [e.target.name]: e.target.value,
+      }
     })
   }
 
   render() {
-    const houseTypes = ['Apartment', 'Entire House', 'Sleeping Bag', 'Yurt'];
-    const countries = ['USA', 'Canada', 'Sweden'];
-
     return (
       <div className={'add-property-form-container'}>
         <div className={'cancel'}>
@@ -51,12 +115,17 @@ class AddPropertyForm extends React.Component {
           >
           </FontAwesomeIcon>
         </div>
-        <form className={'add-property-form'}>
+        <form
+          className={'add-property-form'}
+          onSubmit={this.handleFormSubmit}
+          method={'post'}
+        >
           <label htmlFor={'title'}>Title:</label>
           <input
             type={'text'}
             id={'title'}
             name={'title'}
+            value={this.state.title}
             required={true}
             onChange={this.handleInputChange}
           >
@@ -66,9 +135,10 @@ class AddPropertyForm extends React.Component {
           <select
             id={'house-type'}
             name={'houseType'}
-            onChange={this.handleInputChange}
+            selected={this.state.houseType}
+            onChange={this.handleHouseTypeChange}
           >
-            { houseTypes.map((houseType) => {
+            { this.houseTypes.map((houseType) => {
                 return <option value={houseType} key={houseType}>{houseType}</option>
               })
             }
@@ -79,8 +149,9 @@ class AddPropertyForm extends React.Component {
             type={'text'}
             id={'city'}
             name={'city'}
+            value={this.state.location.city}
             required={true}
-            onChange={this.handleInputChange}
+            onChange={this.handleCityCountryChange}
           >
           </input>
 
@@ -88,9 +159,10 @@ class AddPropertyForm extends React.Component {
           <select
             id={'country'}
             name={'country'}
-            onChange={this.handleInputChange}
+            selected={this.state.location.country}
+            onChange={this.handleCityCountryChange}
           >
-            { countries.map((country) => {
+            { this.countries.map((country) => {
                 return <option value={country} key={country}>{country}</option>
               })
             }
@@ -102,9 +174,10 @@ class AddPropertyForm extends React.Component {
             min={1}
             id={'cost'}
             name={'cost'}
+            value={this.state.payment.cost}
             size={5}
             required={true}
-            onChange={this.handleInputChange}
+            onChange={this.handleCostChange}
           >
           </input>
 
@@ -112,7 +185,7 @@ class AddPropertyForm extends React.Component {
             type={'checkbox'}
             id={'description'}
             name={'description'}
-            value={'Free Cancellation'}
+            value={this.state.payment.description}
             onChange={this.handleCheckboxChange}
           >
           </input>
@@ -128,8 +201,9 @@ class AddPropertyForm extends React.Component {
             type={'text'}
             id={'name'}
             name={'name'}
+            value={this.state.host.name}
             required={true}
-            onChange={this.handleInputChange}
+            onChange={this.handleNameChange}
           >
           </input>
 
