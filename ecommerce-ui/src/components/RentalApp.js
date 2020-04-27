@@ -10,7 +10,7 @@ class RentalApp extends React.Component {
     super(props)
     this.state = {
       cartItems: [],
-      properties: [],
+      properties: [...properties],
     }
   }
 
@@ -40,7 +40,7 @@ class RentalApp extends React.Component {
   }
 
   addCartItem = (id, qty) => {
-    const propertyInfo = properties[id]
+    const propertyInfo = this.state.properties[id]
     const { title, payment } = propertyInfo
     const cartItem = {
       id: id,
@@ -69,7 +69,7 @@ class RentalApp extends React.Component {
         >
         </AddProperty>
         <PropertyList
-          properties={properties}
+          properties={this.state.properties}
           addPropertyToCart={this.addPropertyToCart}
         >
         </PropertyList>

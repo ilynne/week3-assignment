@@ -15,19 +15,19 @@ class AddPropertyForm extends React.Component {
       'annie-spratt-0mElfGrF8EM-unsplash.jpg'
     ]
     this.state = {
-      title: 'Hovel',
+      title: '',
       houseType: this.houseTypes[0],
       image: this.images[0],
       location: {
-        city: 'Seattle',
+        city: '',
         country: this.countries[0],
       },
       payment: {
-        cost: 100,
+        cost: 0,
         description: '',
       },
       host: {
-        name: 'Lynne',
+        name: '',
         isSuperhost: false,
       },
       rating: {

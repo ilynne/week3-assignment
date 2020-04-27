@@ -7,7 +7,7 @@ class AddProperty extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayForm: true,
+      displayForm: false,
       property: [],
     }
   }
