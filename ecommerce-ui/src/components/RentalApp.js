@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import properties from '../_data/airbnbs.json';
 import PropertyList from './propertyList';
 import Cart from './cart';

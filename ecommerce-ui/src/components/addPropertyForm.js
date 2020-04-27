@@ -4,6 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 class AddPropertyForm extends React.Component {
+  static propTypes = {
+    hideForm: PropTypes.func.isRequired,
+    addPropertyListing: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props)
     this.houseTypes = ['Apartment', 'Entire House', 'Sleeping Bag', 'Yurt'];

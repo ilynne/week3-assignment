@@ -4,6 +4,9 @@ import AddPropertyForm from './addPropertyForm';
 
 
 class AddProperty extends React.Component {
+  static propTypes = {
+    addPropertyListing: PropTypes.func.isRequired,
+  }
   constructor(props) {
     super(props)
     this.state = {
