@@ -5,6 +5,7 @@ import PropertyList from './propertyList';
 import Cart from './cart';
 import AddProperty from './addProperty';
 
+// still needs proptypes
 class RentalApp extends React.Component {
   constructor(props) {
     super(props)
