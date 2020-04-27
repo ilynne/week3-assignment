@@ -15,25 +15,28 @@ class AddPropertyForm extends React.Component {
       'annie-spratt-0mElfGrF8EM-unsplash.jpg'
     ]
     this.state = {
-      title: '',
-      houseType: this.houseTypes[0],
-      image: this.images[0],
-      location: {
-        city: '',
-        country: this.countries[0],
+      changed: false,
+      property: {
+        title: '',
+        houseType: this.houseTypes[0],
+        image: this.images[0],
+        location: {
+          city: '',
+          country: this.countries[0],
+        },
+        payment: {
+          cost: 0,
+          description: '',
+        },
+        host: {
+          name: '',
+          isSuperhost: false,
+        },
+        rating: {
+          stars: 0,
+          reviews: 0,
+        },
       },
-      payment: {
-        cost: 0,
-        description: '',
-      },
-      host: {
-        name: '',
-        isSuperhost: false,
-      },
-      rating: {
-        stars: 0,
-        reviews: 0,
-      }
     }
     this.handleClickClose = this.handleClickClose.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -52,59 +55,88 @@ class AddPropertyForm extends React.Component {
 
   handleInputChange(e) {
     this.setState({
-      [e.target.name]: e.target.value,
+      changed: true,
+      property: {
+        ...this.state.property,
+        [e.target.name]: e.target.value,
+      },
     });
   }
 
   handleCheckboxChange(e) {
     this.setState({
-      payment: {
-        ...this.state.payment,
-        [e.target.name]: e.target.checked ? 'Free Cancellation' : '',
-      }
-    })
+      changed: true,
+      property: {
+        ...this.state.property,
+        payment: {
+          ...this.state.property.payment,
+          [e.target.name]: e.target.checked ? 'Free Cancellation' : '',
+        },
+      },
+    });
   }
 
   handleFormSubmit(e) {
     e.preventDefault();
-    this.props.addPropertyListing(this.state);
+    this.props.addPropertyListing(this.state.property);
+    this.setState({
+      changed: false
+    });
   }
 
   handleHouseTypeChange(e) {
     this.setState({
-      [e.target.name]: e.target.value,
-      image: this.images[e.target.selectedIndex],
-    })
+      changed: true,
+      property: {
+        ...this.state.property,
+        [e.target.name]: e.target.value,
+        image: this.images[e.target.selectedIndex],
+      },
+    });
   }
 
   handleCityCountryChange(e) {
     this.setState({
-      location: {
-        ...this.state.location,
-        [e.target.name]: e.target.value,
-      }
-    })
+      changed: true,
+      property: {
+        ...this.state.property,
+        location: {
+          ...this.state.property.location,
+          [e.target.name]: e.target.value,
+        },
+      },
+    });
   }
 
   handleCostChange(e) {
     this.setState({
-      payment: {
-        ...this.state.payment,
-        [e.target.name]: e.target.value,
-      }
-    })
+      changed: true,
+      property: {
+        ...this.state.property,
+        payment: {
+          ...this.state.property.payment,
+          [e.target.name]: e.target.value,
+        },
+      },
+    });
   }
 
   handleNameChange(e) {
     this.setState({
-      host: {
-        ...this.state.host,
-        [e.target.name]: e.target.value,
-      }
-    })
+      changed: true,
+      property: {
+        ...this.state.property,
+        host: {
+          ...this.state.property.host,
+          [e.target.name]: e.target.value,
+        },
+      },
+    });
   }
 
   render() {
+    const { property } = this.state;
+
     return (
       <div className={'add-property-form-container'}>
         <div className={'cancel'}>
@@ -125,7 +157,7 @@ class AddPropertyForm extends React.Component {
             type={'text'}
             id={'title'}
             name={'title'}
-            value={this.state.title}
+            value={property.title}
             required={true}
             onChange={this.handleInputChange}
           >
@@ -135,7 +167,7 @@ class AddPropertyForm extends React.Component {
           <select
             id={'house-type'}
             name={'houseType'}
-            selected={this.state.houseType}
+            selected={property.houseType}
             onChange={this.handleHouseTypeChange}
           >
             { this.houseTypes.map((houseType) => {
@@ -149,7 +181,7 @@ class AddPropertyForm extends React.Component {
             type={'text'}
             id={'city'}
             name={'city'}
-            value={this.state.location.city}
+            value={property.location.city}
             required={true}
             onChange={this.handleCityCountryChange}
           >
@@ -159,7 +191,7 @@ class AddPropertyForm extends React.Component {
           <select
             id={'country'}
             name={'country'}
-            selected={this.state.location.country}
+            selected={property.location.country}
             onChange={this.handleCityCountryChange}
           >
             { this.countries.map((country) => {
@@ -174,7 +206,7 @@ class AddPropertyForm extends React.Component {
             min={1}
             id={'cost'}
             name={'cost'}
-            value={this.state.payment.cost}
+            value={property.payment.cost}
             size={5}
             required={true}
             onChange={this.handleCostChange}
@@ -185,7 +217,7 @@ class AddPropertyForm extends React.Component {
             type={'checkbox'}
             id={'description'}
             name={'description'}
-            value={this.state.payment.description}
+            value={property.payment.description}
             onChange={this.handleCheckboxChange}
           >
           </input>
@@ -201,13 +233,18 @@ class AddPropertyForm extends React.Component {
             type={'text'}
             id={'name'}
             name={'name'}
-            value={this.state.host.name}
+            value={property.host.name}
             required={true}
             onChange={this.handleNameChange}
           >
           </input>
 
-          <button type={'submit'}>Add</button>
+          <button
+            type={'submit'}
+            disabled={!this.state.changed}
+          >
+            Add
+          </button>
         </form>
       </div>
     )
