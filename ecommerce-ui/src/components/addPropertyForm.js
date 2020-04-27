@@ -64,14 +64,17 @@ class AddPropertyForm extends React.Component {
   }
 
   handleCheckboxChange(e) {
+    const newPayment = {
+      payment: {
+        ...this.state.property.payment,
+        [e.target.name]: e.target.checked ? 'Free Cancellation' : '',
+      },
+    }
     this.setState({
       changed: true,
       property: {
         ...this.state.property,
-        payment: {
-          ...this.state.property.payment,
-          [e.target.name]: e.target.checked ? 'Free Cancellation' : '',
-        },
+        ...newPayment,
       },
     });
   }
@@ -96,40 +99,49 @@ class AddPropertyForm extends React.Component {
   }
 
   handleCityCountryChange(e) {
+    const newLocation = {
+      location: {
+        ...this.state.property.location,
+        [e.target.name]: e.target.value,
+      },
+    }
     this.setState({
       changed: true,
       property: {
         ...this.state.property,
-        location: {
-          ...this.state.property.location,
-          [e.target.name]: e.target.value,
-        },
+        ...newLocation,
       },
     });
   }
 
   handleCostChange(e) {
+    const newPayment = {
+      payment: {
+        ...this.state.property.payment,
+        [e.target.name]: Number(e.target.value),
+      },
+    }
     this.setState({
       changed: true,
       property: {
         ...this.state.property,
-        payment: {
-          ...this.state.property.payment,
-          [e.target.name]: e.target.value,
-        },
+        ...newPayment,
       },
     });
   }
 
   handleNameChange(e) {
+    const newHost = {
+      host: {
+        ...this.state.property.host,
+        [e.target.name]: e.target.value,
+      },
+    }
     this.setState({
       changed: true,
       property: {
         ...this.state.property,
-        host: {
-          ...this.state.property.host,
-          [e.target.name]: e.target.value,
-        },
+        ...newHost,
       },
     });
   }
@@ -206,7 +218,7 @@ class AddPropertyForm extends React.Component {
             min={1}
             id={'cost'}
             name={'cost'}
-            value={property.payment.cost}
+            value={property.payment.cost > 0 ? property.payment.cost : ''}
             size={5}
             required={true}
             onChange={this.handleCostChange}
